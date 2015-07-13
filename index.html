@@ -14,6 +14,19 @@
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
         <img src="img/spotify-logo-primary-horizontal-light-background-rgb.jpg" height="200" width='450'>
+        <h3>Spotify Search</h3>
+        <form name="form-group">
+            <div class="form-group">
+                <label>Enter an artist for their top tracks</label>
+                <input name='search' ng-minlength='3' placeholder='Enter the artists name' ng-model="artist" class="form-control" required></input>
+                <p class="help-block" ng-show="songForm.search.$error.minlength"></p>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
+            </div>
+        </form>
+
+        <div ng-class="track.preview_url == currentSong ? 'playing' : ''"  ng-repeat="track in tracks" class="col-xs-4 img"><img ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img></div>
     </div>
 	
 </body>
