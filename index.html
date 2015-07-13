@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -7,29 +7,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
     <script src="app.js"></script>
     <link href="css/app.css" type="text/css" />
-    <meta charset="UTF-8">
-    <title>Spotify Challenge</title>
-    <title></title>
+      <meta charset="utf-8">
+      <title>Spotify Challeng</title>
 </head>
 <body>
-    <div ng-app="myApp" ng-controller="myCtrl">
-        <img src="img/spotify-logo-primary-horizontal-light-background-rgb.jpg" height="200" width='450'>
-        <h3>Spotify Search</h3>
-        <form name="form-group">
-            <div class="form-group">
-                <label>Enter an artist for their top tracks</label>
-                <input name='search' ng-minlength='3' placeholder='Enter the artists name' ng-model="artist" class="form-control" required></input>
-                <p class="help-block" ng-show="songForm.search.$error.minlength"></p>
-            </div>
-            <div class="form-group">
-                <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
-            </div>
-        </form>
-        <div>
-          <div class="container-fixed">
-            <p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-            <div ng-class="track.preview_url == currentSong ? 'playing' : ''"  ng-repeat="track in tracks" class="col-xs-4 img"><img ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img></div>
-        </div>
-    </div>	
+  <div ng-app="myApp" ng-controller="myCtrl">
+  <form name="songForm">
+    <h3>Spotify Artists Top Tracks</h3>
+    <div class="form-group">
+      <label>Spotify search an artist</label>
+      <input name="search" ng-minlength=3 placeholder="Enter your search.." ng-model="track" class="form-control" required></input>
+    <p id="warning" class="help-block" ng-show="songForm.search.$error.minlength">Artists Name must be 3 or more characters</p>
+    </div>
+    <div class="form-group">
+      <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
+    </div>
+  </form>
+  <div>
+      <div class="container-fixed">
+        <p ng-show="tracks.length>0" class="help-block">These are the top tracks for {{track}} on Spotify</p>
+        <div ng-class="track.preview_url == currentSong ? 'playing' : ''"  ng-repeat="track in tracks" class="col-sm-4 img"><p id="title">{{track.name}}</p><img ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img></div>
+    </div>
+    </div>
+  </div>
+  </div>
 </body>
 </html>
