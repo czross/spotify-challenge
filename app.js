@@ -9,25 +9,24 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
 	$scope.getSongs = function() {
 		$http.get(baseUrl + $scope.track).success(function(response){
       	idArtist = response.tracks.items.id; 
-      }
+      })
       	$http.get(topAlbumUrl).success(function(response){
       	data = $scope.tracks = response.tracks; 
-    })
+      })
+    }
 
     $scope.play = function(song) {
-    if($scope.currentSong == song) {
-      $scope.audioObject.pause()
-      $scope.currentSong = false
-      return
-    }
-    else {
-      if($scope.audioObject.pause != undefined) $scope.audioObject.pause()
-      $scope.audioObject = new Audio(song);
-      $scope.audioObject.play()  
-      $scope.currentSong = song
-    }
+	    if($scope.currentSong == song) {
+	      $scope.audioObject.pause()
+	      $scope.currentSong = false
+	      return
+	    }
+	    else {
+	      if($scope.audioObject.pause != undefined) $scope.audioObject.pause()
+	      $scope.audioObject = new Audio(song);
+	      $scope.audioObject.play()  
+	      $scope.currentSong = song
+	    }
   }
 
-  }
-	}
 })
